@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import CalendarComp from './calendar';
+import Calendar from './calendar';
 import axios from 'axios';
+// import Timepicker from './timepicker';
+import Timepicker from './timepicker';
 
 function Reservation() {
 
@@ -9,7 +11,7 @@ function Reservation() {
         fullName:'',
         email:'',
         phoneNumber:'',
-        name:'',
+        date:'',
         checkin:'',
         checkout:'',
         roomPreference:'',
@@ -31,6 +33,14 @@ function Reservation() {
         setFormData({
           ...formData,
           date: selectedDate,
+        });
+      };
+
+      // Handle date selection from CalendarComp
+    const handleTimeSelect = (selectedTime) => {
+        setFormData({
+          ...formData,
+          time: selectedTime,
         });
       };
 
@@ -95,22 +105,16 @@ function Reservation() {
                             onChange={handleInputChange}
                             />
                         </div>
-                        
-                        {/* <div className=' relative w-full flex flex-col my-2 text-xs sm:text-base my-0 sm:my-2'>
-                            <label className='text-start ml-2 text-red-800 py-1 sm:py-0 z-10'>Check in date time</label>
-                            <div className=' mx-2 border rounded-md'>
-                            <CalendarComp
+
+                        <div className='flex justify-between'>
+                        <Calendar
                             onDateSelect={handleDateSelect} 
-                            />
-                            
-                            </div>
-                        </div>
-                        <div className='w-full flex flex-col my-2 text-xs sm:text-base my-0 sm:my-2'>
-                            <label className='text-start ml-2 text-red-800 py-1 sm:py-0'>check out date time</label>
-                            
-                            <div className='py-3 mx-2 border rounded-md'>
-                            
-                            </div>
+                        />
+                        {/* <Timepicker/> */}
+                        
+                        {/* <Timepicker
+                        handleTimeSelect={handleTimeSelect}
+                        /> */}
                         </div>
                         <div className='w-full my-2 flex flex-col text-xs sm:text-base my-0 sm:my-2'>
                             <p className='text-start ml-2 text-red-800 py-1 sm:py-0'>Room prefernce</p>
@@ -120,7 +124,7 @@ function Reservation() {
                                 <button className='border px-6 rounded-full hover:text-gray-700 hover:border-green-400'>suite</button>
                             </div>
                             
-                        </div> */}
+                        </div>
 
 
                         <div className='w-full flex flex-col my-2 text-xs sm:text-base my-0 sm:my-2'>
@@ -146,7 +150,7 @@ function Reservation() {
                         <div className='w-full flex flex-col my-2 text-xs sm:text-base my-0 sm:my-2'>
                             <label className='text-start ml-2 text-red-900 py-1 sm:py-0'>special request</label>
                             <textarea
-                            className='border mx-2 border rounded-md outline-none h-20'
+                            className='border mx-2 border rounded-md outline-none h-20='
                             name='request'
                             value={formData.request}
                             onChange={handleInputChange}
